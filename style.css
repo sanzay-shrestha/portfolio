@@ -2,9 +2,27 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #fff;
-  color: #333;
+  background: linear-gradient(-45deg, #ff9800, #e68900, #333, #121212);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
 }
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+#bgCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;              /* behind all content */
+  width: 100%;
+  height: 100%;
+}
+
+
 .profile-pic {
   width: 150px;          
   height: 150px;         
