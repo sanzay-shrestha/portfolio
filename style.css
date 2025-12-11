@@ -293,3 +293,18 @@ footer .social-icons a:hover {
   50% { border-color: #ff9800; }
   100% { border-color: transparent; }
 }
+/* Hero section layout */
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.hero h1 {
+  margin-bottom: 10px;
+  font-size: 2.5em;
+}
+
+.hero .tagline {
+  font-size: 1.2em;
+  color: #666;
+}
