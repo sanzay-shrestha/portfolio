@@ -34,3 +34,22 @@ toggleButton.addEventListener('click', () => {
     toggleButton.textContent = '🌙 Dark Mode';
   }
 });
+
+// Modal functions
+function openModal(id) {
+  document.getElementById(id + '-modal').style.display = 'block';
+}
+
+function closeModal(id) {
+  document.getElementById(id + '-modal').style.display = 'none';
+}
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+  const modals = document.querySelectorAll('.modal');
+  modals.forEach(modal => {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+};

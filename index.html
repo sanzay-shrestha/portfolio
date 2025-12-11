@@ -65,17 +65,51 @@
     <section id="projects" class="projects">
       <h2>Projects</h2>
       <div class="project-grid">
-        <div class="project-card">
+        <div class="project-card" onclick="openModal('taskflow')">
           <h3>TaskFlow Pro</h3>
           <p>A MERN-based task management app with authentication and dashboards.</p>
         </div>
-        <div class="project-card">
+
+        <!-- Modal -->
+        <div id="taskflow-modal" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal('taskflow')">&times;</span>
+            <h2>TaskFlow Pro</h2>
+            <p>Built with MongoDB, Express, React, and Node.js. Features include authentication, dashboards, and task tracking.</p>
+            <a href="https://github.com/sanzay-shrestha/taskflow-pro" target="_blank">View on GitHub</a>
+          </div>
+        </div>
+
+        <div class="project-card" onclick="openModal('todolist')">
           <h3>To Do List</h3>
           <p>Simple CRUD app built with Node.js and MongoDB.</p>
         </div>
-        <div class="project-card">
+
+        <!-- Modal -->
+        <div id="todolist-modal" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal('todolist')">&times;</span>
+            <h2>To Do List</h2>
+            <p>Simple CRUD app built with Node.js and MongoDB.</p>
+            <a href="https://github.com/sanzay-shrestha/to-do-list" target="_blank">View on GitHub</a>
+          </div>
+        </div>
+
+        <div class="project-card" onclick="openModal('portfolio')">
           <h3>Portfolio Website</h3>
           <p>Static HTML/CSS site showcasing my projects and skills.</p>
+        </div>
+
+        <!-- Modal -->
+        <div id="portfolio-modal" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal('portfolio')">&times;</span>
+            <h2>Portfolio Website</h2>
+            <a href="https://github.com/sanzay-shrestha/portfolio" target="_blank">View on GitHub</a>
+          </div>
+        </div>
+
+        <div class="project-card">
         </div>
       </div>
     </section>
@@ -83,7 +117,7 @@
   </main>
 
   <footer>
-    <p>© 2025 Sanjay Shrestha</p>
+    <p>© 2025 SK Shrestha</p>
     <div class="social-icons">
       <a href="https://github.com/sanzay-shrestha" target="_blank">🐙 GitHub</a>
       <!-- <a href="https://linkedin.com/in/your-linkedin" target="_blank">💼 LinkedIn</a>
