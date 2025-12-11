@@ -53,3 +53,40 @@ window.onclick = function(event) {
     }
   });
 };
+
+
+// Typewriter effect
+const typingElement = document.querySelector('.typing');
+const phrases = [
+  "learning the MERN stack step by step...",
+  "building interactive portfolios...",
+  "optimizing workflows with GitHub & VS Code..."
+];
+
+let phraseIndex = 0;
+let charIndex = 0;
+let currentPhrase = "";
+let isDeleting = false;
+
+function typeEffect() {
+  currentPhrase = phrases[phraseIndex];
+  if (!isDeleting) {
+    typingElement.textContent = currentPhrase.substring(0, charIndex + 1);
+    charIndex++;
+    if (charIndex === currentPhrase.length) {
+      isDeleting = true;
+      setTimeout(typeEffect, 1500); // pause before deleting
+      return;
+    }
+  } else {
+    typingElement.textContent = currentPhrase.substring(0, charIndex - 1);
+    charIndex--;
+    if (charIndex === 0) {
+      isDeleting = false;
+      phraseIndex = (phraseIndex + 1) % phrases.length;
+    }
+  }
+  setTimeout(typeEffect, isDeleting ? 50 : 100);
+}
+
+typeEffect();
