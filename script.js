@@ -58,9 +58,9 @@ window.onclick = function(event) {
 // Typewriter effect
 const typingElement = document.querySelector('.typing');
 const phrases = [
-  "learning the MERN stack step by step...",
-  "building interactive portfolios...",
-  "optimizing workflows with GitHub & VS Code..."
+  "learning MERN stack step by step...",
+  "learning about building interactive portfolios...",
+  "learning about optimizing workflows with GitHub & VS Code..."
 ];
 
 let phraseIndex = 0;
@@ -90,3 +90,51 @@ function typeEffect() {
 }
 
 typeEffect();
+
+
+// Scroll-to-top button
+const scrollTopBtn = document.getElementById("scrollTopBtn");
+
+window.onscroll = function() {
+  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    scrollTopBtn.style.display = "block";
+  } else {
+    scrollTopBtn.style.display = "none";
+  }
+};
+
+scrollTopBtn.addEventListener("click", function() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+
+// Project filter
+function filterProjects(category) {
+  const projects = document.querySelectorAll('.project-card');
+  projects.forEach(project => {
+    if (category === 'all' || project.classList.contains(category)) {
+      project.style.display = 'block';
+    } else {
+      project.style.display = 'none';
+    }
+  });
+}
+
+// Modal functions
+function openModal(id) {
+  document.getElementById(id + '-modal').style.display = 'block';
+}
+
+function closeModal(id) {
+  document.getElementById(id + '-modal').style.display = 'none';
+}
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+  const modals = document.querySelectorAll('.modal');
+  modals.forEach(modal => {
+    if (event.target === modal) {
+      modal.style.display = 'none';
+    }
+  });
+};

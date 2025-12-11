@@ -16,15 +16,14 @@
   </nav>
   <header class="hero">
     <img src="falcon.png" alt="Falcon Picture" class="profile-pic">
-      <h1>Hello, its me SK 👋</h1>
-       <p class="tagline">I am <span class="typing"></span></p>
+    <h1>Hello, its me SK👋</h1>
+    <p class="tagline">I am <span class="typing"></span></p>
   </header>
 
   <main>
     <section id="about" class="about">
       <h2>About Me</h2>
       <p>Nothing New just trying Github and Learning some. And just guffing around.</p>
-      <!-- <p>I’m focused on building scalable web apps and mastering the MERN stack.</p> -->
     </section>
 
     <section id="skills" class="skills">
@@ -61,7 +60,7 @@
       <p>GitHub: <a href="https://github.com/sanzay-shrestha" target="_blank">sanzay-shrestha</a></p>
     </section>
 
-    <section id="projects" class="projects">
+    <!-- <section id="projects" class="projects">
       <h2>Projects</h2>
       <div class="project-grid">
         <div class="project-card" onclick="openModal('taskflow')">
@@ -69,7 +68,6 @@
           <p>A MERN-based task management app with authentication and dashboards.</p>
         </div>
 
-        <!-- Modal -->
         <div id="taskflow-modal" class="modal">
           <div class="modal-content">
             <span class="close" onclick="closeModal('taskflow')">&times;</span>
@@ -84,7 +82,6 @@
           <p>Simple CRUD app built with Node.js and MongoDB.</p>
         </div>
 
-        <!-- Modal -->
         <div id="todolist-modal" class="modal">
           <div class="modal-content">
             <span class="close" onclick="closeModal('todolist')">&times;</span>
@@ -99,7 +96,6 @@
           <p>Static HTML/CSS site showcasing my projects and skills.</p>
         </div>
         
-        <!-- Modal -->
         <div id="portfolio-modal" class="modal">
           <div class="modal-content">
             <span class="close" onclick="closeModal('portfolio')">&times;</span>
@@ -109,10 +105,66 @@
           </div>
         </div>
       </div>
+    </section> -->
+    <section id="projects">
+      <h2>My Projects</h2>
+      
+      <!-- Filter buttons -->
+      <div class="filter-buttons">
+        <button onclick="filterProjects('all')">All</button>
+        <button onclick="filterProjects('mern')">MERN</button>
+        <button onclick="filterProjects('frontend')">Frontend</button>
+        <button onclick="filterProjects('tools')">Tools</button>
+      </div>
+
+      <!-- Project cards -->
+      <div class="project-card mern" onclick="openModal('taskflow')">
+        <h3>TaskFlow Pro</h3>
+        <p>MERN-based task management app with authentication and dashboards.</p>
+      </div>
+
+      <div class="project-card frontend" onclick="openModal('portfolio')">
+        <h3>Portfolio Website</h3>
+        <p>Responsive portfolio with animations, dark mode, and interactive features.</p>
+      </div>
+
+      <div class="project-card tools" onclick="openModal('todo')">
+        <h3>To Do List</h3>
+        <p>Simple productivity tool with local storage.</p>
+      </div>
     </section>
 
-  </main>
+    <!-- Modals -->
+    <div id="taskflow-modal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('taskflow')">&times;</span>
+        <h2>TaskFlow Pro</h2>
+        <p>Built with MongoDB, Express, React, and Node.js. Features include authentication, dashboards, and task tracking.</p>
+        <a href="https://github.com/sanzay-shrestha/taskflow-pro" target="_blank">View on GitHub</a>
+      </div>
+    </div>
 
+    <div id="portfolio-modal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('portfolio')">&times;</span>
+        <h2>Portfolio Website</h2>
+        <p>Responsive portfolio with animations, dark mode, and interactive features.</p>
+        <a href="https://github.com/sanzay-shrestha/portfolio" target="_blank">View on GitHub</a>
+      </div>
+    </div>
+
+    <div id="todo-modal" class="modal">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal('todo')">&times;</span>
+        <h2>To Do List</h2>
+        <p>Simple productivity tool with local storage.</p>
+        <a href="https://github.com/sanzay-shrestha/todo-list" target="_blank">View on GitHub</a>
+      </div>
+    </div>
+
+
+  </main>
+  
   <footer>
     <p>© 2025 SK Shrestha</p>
     <div class="social-icons">
@@ -121,7 +173,8 @@
       <a href="https://twitter.com/your-twitter" target="_blank">🐦 Twitter</a> -->
     </div>
   </footer>
-
+  
+  <button id="scrollTopBtn" title="Go to top">⬆</button>
   <script src="script.js"></script>
 </body>
 </html>
