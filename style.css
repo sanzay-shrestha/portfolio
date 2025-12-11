@@ -180,3 +180,35 @@ body.dark-mode footer {
 #dark-mode-toggle:hover {
   background: #e68900;
 }
+/* Skills section */
+.skills {
+  margin: 40px 0;
+}
+
+.skill {
+  margin-bottom: 20px;
+}
+
+.skill span {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.progress {
+  background: #ddd;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 25px;
+}
+
+.progress-bar {
+  background: #ff9800;
+  height: 100%;
+  color: #fff;
+  text-align: right;
+  padding-right: 10px;
+  line-height: 25px;
+  font-size: 14px;
+  transition: width 1s ease;
+}
