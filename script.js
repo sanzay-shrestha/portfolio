@@ -1,114 +1,72 @@
-// Smooth scroll for nav links
-document.querySelectorAll('.navbar a').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    e.preventDefault();
-    document.querySelector(this.getAttribute('href'))
-      .scrollIntoView({ behavior: 'smooth' });
-  });
+// =======================
+// Dark Mode Toggle
+// =======================
+const toggleBtn = document.getElementById("dark-mode-toggle");
+toggleBtn.addEventListener("click", () => {
+  document.body.classList.toggle("dark-mode");
 });
 
-// Fade-in animation on scroll
-const sections = document.querySelectorAll('section');
+// =======================
+// Typing Animation
+// =======================
+const roles = ["learning MERN stack", "building projects", "optimizing workflows"];
+let roleIndex = 0, charIndex = 0;
+const typingSpan = document.querySelector(".typing");
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.2 });
-
-sections.forEach(section => {
-  observer.observe(section);
-});
-
-// Dark mode toggle
-const toggleButton = document.getElementById('dark-mode-toggle');
-toggleButton.addEventListener('click', () => {
-  document.body.classList.toggle('dark-mode');
-  
-  // Update button text
-  if (document.body.classList.contains('dark-mode')) {
-    toggleButton.textContent = '☀️ Light Mode';
-  } else {
-    toggleButton.textContent = '🌙 Dark Mode';
-  }
-});
-
-// Modal functions
-function openModal(id) {
-  document.getElementById(id + '-modal').style.display = 'block';
-}
-
-function closeModal(id) {
-  document.getElementById(id + '-modal').style.display = 'none';
-}
-
-// Close modal when clicking outside
-window.onclick = function(event) {
-  const modals = document.querySelectorAll('.modal');
-  modals.forEach(modal => {
-    if (event.target === modal) {
-      modal.style.display = 'none';
-    }
-  });
-};
-
-
-// Typewriter effect
-const typingElement = document.querySelector('.typing');
-const phrases = [
-  "learning MERN stack step by step...",
-  "learning about building interactive portfolios...",
-  "learning about optimizing workflows with GitHub & VS Code..."
-];
-
-let phraseIndex = 0;
-let charIndex = 0;
-let currentPhrase = "";
-let isDeleting = false;
-
-function typeEffect() {
-  currentPhrase = phrases[phraseIndex];
-  if (!isDeleting) {
-    typingElement.textContent = currentPhrase.substring(0, charIndex + 1);
+function type() {
+  if (charIndex < roles[roleIndex].length) {
+    typingSpan.textContent += roles[roleIndex].charAt(charIndex);
     charIndex++;
-    if (charIndex === currentPhrase.length) {
-      isDeleting = true;
-      setTimeout(typeEffect, 1500); // pause before deleting
-      return;
-    }
+    setTimeout(type, 100);
   } else {
-    typingElement.textContent = currentPhrase.substring(0, charIndex - 1);
-    charIndex--;
-    if (charIndex === 0) {
-      isDeleting = false;
-      phraseIndex = (phraseIndex + 1) % phrases.length;
-    }
+    setTimeout(erase, 2000);
   }
-  setTimeout(typeEffect, isDeleting ? 50 : 100);
 }
 
-typeEffect();
+function erase() {
+  if (charIndex > 0) {
+    typingSpan.textContent = roles[roleIndex].substring(0, charIndex - 1);
+    charIndex--;
+    setTimeout(erase, 50);
+  } else {
+    roleIndex = (roleIndex + 1) % roles.length;
+    setTimeout(type, 500);
+  }
+}
 
+type();
 
-// Scroll-to-top button
+// =======================
+// Section Fade-In on Scroll
+// =======================
+const sections = document.querySelectorAll("section");
+window.addEventListener("scroll", () => {
+  sections.forEach(sec => {
+    const rect = sec.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 100) {
+      sec.classList.add("visible");
+    }
+  });
+});
+
+// =======================
+// Scroll-to-Top Button
+// =======================
 const scrollTopBtn = document.getElementById("scrollTopBtn");
-
-window.onscroll = function() {
+window.onscroll = () => {
   if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
     scrollTopBtn.style.display = "block";
   } else {
     scrollTopBtn.style.display = "none";
   }
 };
-
-scrollTopBtn.addEventListener("click", function() {
+scrollTopBtn.addEventListener("click", () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-
-// Project filter
+// =======================
+// Project Filter
+// =======================
 function filterProjects(category) {
   const projects = document.querySelectorAll('.project-card');
   projects.forEach(project => {
@@ -120,29 +78,11 @@ function filterProjects(category) {
   });
 }
 
-// Modal functions
-function openModal(id) {
-  document.getElementById(id + '-modal').style.display = 'block';
-}
-
-function closeModal(id) {
-  document.getElementById(id + '-modal').style.display = 'none';
-}
-
-// Close modal when clicking outside
-window.onclick = function(event) {
-  const modals = document.querySelectorAll('.modal');
-  modals.forEach(modal => {
-    if (event.target === modal) {
-      modal.style.display = 'none';
-    }
-  });
-};
-
-// Particle background
+// =======================
+// Particle Background
+// =======================
 const canvas = document.getElementById("bgCanvas");
 const ctx = canvas.getContext("2d");
-
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
@@ -199,4 +139,114 @@ draw();
 window.addEventListener("resize", () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
+});
+
+// Animated Counters
+const counters = document.querySelectorAll('.counter');
+const speed = 200; // lower = faster
+
+function animateCounters() {
+  counters.forEach(counter => {
+    const updateCount = () => {
+      const target = +counter.getAttribute('data-target');
+      const count = +counter.innerText;
+      const increment = target / speed;
+
+      if (count < target) {
+        counter.innerText = Math.ceil(count + increment);
+        setTimeout(updateCount, 30);
+      } else {
+        counter.innerText = target;
+      }
+    };
+    updateCount();
+  });
+}
+
+// Trigger when stats section is visible
+window.addEventListener('scroll', () => {
+  const statsSection = document.getElementById('stats');
+  const rect = statsSection.getBoundingClientRect();
+  if (rect.top < window.innerHeight && rect.bottom >= 0) {
+    animateCounters();
+  }
+});
+
+// Carousel
+const track = document.querySelector('.carousel-track');
+const slides = Array.from(track.children);
+const prevBtn = document.querySelector('.carousel-btn.prev');
+const nextBtn = document.querySelector('.carousel-btn.next');
+let currentIndex = 0;
+
+function updateCarousel() {
+  track.style.transform = `translateX(-${currentIndex * 100}%)`;
+}
+
+nextBtn.addEventListener('click', () => {
+  currentIndex = (currentIndex + 1) % slides.length;
+  updateCarousel();
+});
+
+prevBtn.addEventListener('click', () => {
+  currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+  updateCarousel();
+});
+
+// Auto-play carousel
+let autoPlayInterval = setInterval(() => {
+  currentIndex = (currentIndex + 1) % slides.length;
+  updateCarousel();
+}, 4000); // change slide every 4s
+
+// Pause auto-play on hover
+track.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
+track.addEventListener('mouseleave', () => {
+  autoPlayInterval = setInterval(() => {
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateCarousel();
+  }, 4000);
+});
+
+// Swipe gestures
+let startX = 0;
+
+track.addEventListener('touchstart', (e) => {
+  startX = e.touches[0].clientX;
+});
+
+track.addEventListener('touchend', (e) => {
+  let endX = e.changedTouches[0].clientX;
+  if (startX - endX > 50) {
+    // swipe left
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateCarousel();
+  } else if (endX - startX > 50) {
+    // swipe right
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    updateCarousel();
+  }
+});
+
+// Blog fade-in
+const blogPosts = document.querySelectorAll('.blog-post');
+window.addEventListener("scroll", () => {
+  blogPosts.forEach(post => {
+    const rect = post.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 100) {
+      post.classList.add("visible");
+    }
+  });   
+});
+particlesJS("bgCanvas", {
+  particles: {
+    number: { value: 40 },   // fewer particles (default is often 100+)
+    size: { value: 2 },      // smaller particles
+    move: { speed: 1 }       // slower movement
+  },
+  interactivity: {
+    events: {
+      onhover: { enable: false }, // disable hover effects if not needed
+    }
+  }
 });
